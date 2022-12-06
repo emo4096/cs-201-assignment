@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class scratch {
     public static void main(String[] args) {
+
         String[][] capitalsStates = {
                 {"Montgomery", "Alabama"},
                 {"Juneau", "Alaska"},
@@ -9,7 +10,7 @@ public class scratch {
                 {"Little Rock", "Arkansas"},
                 {"Sacramento", "California"},
                 {"Denver", "Colorado"},
-                {"Hartford", "Conntecticut"},
+                {"Hartford", "Connecticut"},
                 {"Dover", "Delaware"},
                 {"Tallahassee", "Florida"},
                 {"Atlanta", "Georgia"},
@@ -55,14 +56,25 @@ public class scratch {
                 {"Cheyenne", "Wyoming"},
         };
 
-        System.out.println("The capital of " +
-                           capitalsStates[10][1] + " is " +
-                           capitalsStates[10][0] + ".");
+        System.out.println(Arrays.deepToString(capitalsStates));
+
 
         // Print contents of array (line by line)
 
         // Bubble sort
 
         // Begin user guessing
+
+        // Output results
+
+        // Convert 2D array to hashmap
+
+        // Display hashmap
+
+        // Sort map using with TreeMap class
+
+        // Begin user state/capital response
+
+
     }
 }
