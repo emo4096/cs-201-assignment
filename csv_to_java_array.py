@@ -9,14 +9,14 @@ with open(FILENAME, "r") as file:
         line = line.strip()
         result_list.append(line.split(","))
 
-result = "{"
+result = "{\n"
 
 for item in result_list:
     result += "{\""
     result += item[0]
     result += "\", \""
     result += item[1]
-    result += "\"},"
+    result += "\"},\n"
 
 result += "};"
 
