@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class scratch {
+public class Scratch {
     public static void main(String[] args) {
 
         String[][] capitalsStates = {
