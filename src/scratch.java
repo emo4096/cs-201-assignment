@@ -1,6 +1,8 @@
+import java.util.Arrays;
+
 public class scratch {
     public static void main(String[] args) {
-        String[][] states = {
+        String[][] capitalsStates = {
                 {"Montgomery", "Alabama"},
                 {"Juneau", "Alaska"},
                 {"Phoenix", "Arizona"},
@@ -54,7 +56,13 @@ public class scratch {
         };
 
         System.out.println("The capital of " +
-                           states[10][1] + " is " +
-                           states[10][0] + ".");
+                           capitalsStates[10][1] + " is " +
+                           capitalsStates[10][0] + ".");
+
+        // Print contents of array (line by line)
+
+        // Bubble sort
+
+        // Begin user guessing
     }
 }
