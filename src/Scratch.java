@@ -9,8 +9,15 @@ public class Scratch {
         and return the same array sorted using the bubble sort algorithm.
         */
         String[][] res;
-        for (String[] capitalState : strArray) {
+        for (int i = 0; i < strArray.length - 1; i++) {
             // TODO: Implement bubblesort
+            if (Arrays.toString(strArray[i])
+                    .compareToIgnoreCase(Arrays.toString(strArray[i + 1])) > 1) {
+                System.out.println("Out of order");
+            } else if () {
+
+            }
+
         }
         return strArray;
     }
@@ -129,9 +136,10 @@ public class Scratch {
         }
 
         // Bubble sort
-
+        String[][] capitalsStatesSorted =
+                twoDimensionBubbleSort(capitalsStates);
         // Begin guesses from user and output results at the end
-        playGuessGame(capitalsStates);
+        playGuessGame(capitalsStatesSorted);
 
         // Convert 2D array to hashmap
 
