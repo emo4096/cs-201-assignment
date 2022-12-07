@@ -110,9 +110,8 @@ public class Scratch {
 
         // Bubble sort
 
-        // Begin user guessing
+        // Begin guesses from user and output results at the end
         playGuessGame(capitalsStates);
-        // Output results
 
         // Convert 2D array to hashmap
 
