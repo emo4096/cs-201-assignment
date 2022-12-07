@@ -1,6 +1,12 @@
 import java.util.Arrays;
 
 public class Scratch {
+
+    static void printState(String[] capitalState) {
+        System.out.printf("The capital of %s is %s.%n", capitalState[1], capitalState[0]);
+    }
+
+
     public static void main(String[] args) {
 
         String[][] capitalsStates = {
@@ -56,10 +62,13 @@ public class Scratch {
                 {"Cheyenne", "Wyoming"},
         };
 
-        System.out.println(Arrays.deepToString(capitalsStates));
-
+        printState(capitalsStates[0]);
 
         // Print contents of array (line by line)
+
+        for (String[] capitalState : capitalsStates) {
+            System.out.println(Arrays.toString(capitalState));
+        }
 
         // Bubble sort
 
