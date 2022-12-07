@@ -2,14 +2,39 @@ import java.util.Arrays;
 
 public class Scratch {
 
-    static void printState(String[] capitalState) {
-        System.out.printf("The capital of %s is %s.%n", capitalState[1], capitalState[0]);
+    private static void printState(String[] capitalState) {
+        System.out.printf("The capital of %s is %s.%n",
+                capitalState[1], capitalState[0]);
+    }
+
+    private static String[][] twoDimensionBubbleSort(String[][] strArray) {
+        /* This method should take a 2D string array as an argument
+        and return the same array sorted using the bubble sort algorithm.
+        */
+        return strArray;
+    }
+
+    private static void playGuessGame(String[] strArray) {
+        /* When called, this method should begin prompting
+         the user to guess the capitals of each state.
+         As the user guesses, it should evaluate each guess
+         and increment a correct/incorrect counter.
+         Upon completion of the guessing, it should tell
+         the user how many answers were correct/incorrect.
+         */
+        class GuessGame {
+            /* This class should contain all the methods necessary to
+            initialize and play a game - including reading from the array,
+            taking guesses, evaluating answers, incrementing counts,
+            and output results to the user.
+            */
+        }
     }
 
 
     public static void main(String[] args) {
 
-        String[][] capitalsStates = {
+        final String[][] capitalsStates = {
                 {"Montgomery", "Alabama"},
                 {"Juneau", "Alaska"},
                 {"Phoenix", "Arizona"},
