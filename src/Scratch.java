@@ -14,7 +14,7 @@ public class Scratch {
         return strArray;
     }
 
-    private static void playGuessGame(String[] strArray) {
+    private static void playGuessGame(String[][] strArray) {
         /* When called, this method should begin prompting
          the user to guess the capitals of each state.
          As the user guesses, it should evaluate each guess
@@ -28,7 +28,20 @@ public class Scratch {
             taking guesses, evaluating answers, incrementing counts,
             and output results to the user.
             */
+            int correct;
+            int wrong;
+
+            private GuessGame() {
+                correct = 0;
+                wrong = 0;
+            }
+
+            private int[] getResults() {
+                return new int[]{correct, wrong};
+            }
         }
+        GuessGame game = new GuessGame();
+        System.out.println(Arrays.toString(game.getResults()));
     }
 
 
@@ -98,7 +111,7 @@ public class Scratch {
         // Bubble sort
 
         // Begin user guessing
-
+        playGuessGame(capitalsStates);
         // Output results
 
         // Convert 2D array to hashmap
