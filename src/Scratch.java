@@ -8,6 +8,10 @@ public class Scratch {
         /* This method should take a 2D string array as an argument
         and return the same array sorted using the bubble sort algorithm.
         */
+        String[][] res;
+        for (String[] capitalState : strArray) {
+            // TODO: Implement bubblesort
+        }
         return strArray;
     }
 
@@ -27,7 +31,6 @@ public class Scratch {
             */
             private int correct;
             private int wrong;
-
 
             private GuessGame() {
                 correct = 0;
@@ -51,8 +54,7 @@ public class Scratch {
                     System.out.println(String.format("What is the capital of " +
                             "%s?%nGuess: ", capitalState[1]));
                     res = scanner.nextLine();
-                    if (Objects.equals(res.toLowerCase(),
-                            capitalState[0].toLowerCase())) {
+                    if (res.equalsIgnoreCase(capitalState[0])) {
                         correct++;
                     } else {
                         wrong++;
@@ -122,7 +124,6 @@ public class Scratch {
         };
 
         // Print contents of array (line by line)
-
         for (String[] capitalState : capitalsStates) {
             System.out.println(Arrays.toString(capitalState));
         }
