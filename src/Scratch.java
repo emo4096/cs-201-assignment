@@ -1,11 +1,8 @@
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Scratch {
-
-    private static void printState(String[] capitalState) {
-        System.out.printf("The capital of %s is %s.%n",
-                capitalState[1], capitalState[0]);
-    }
 
     private static String[][] twoDimensionBubbleSort(String[][] strArray) {
         /* This method should take a 2D string array as an argument
@@ -14,34 +11,60 @@ public class Scratch {
         return strArray;
     }
 
-    private static void playGuessGame(String[][] strArray) {
+    private static void playGuessGame(String[][] answers) {
         /* When called, this method should begin prompting
-         the user to guess the capitals of each state.
-         As the user guesses, it should evaluate each guess
-         and increment a correct/incorrect counter.
-         Upon completion of the guessing, it should tell
-         the user how many answers were correct/incorrect.
-         */
+        the user to guess the capitals of each state.
+        As the user guesses, it should evaluate each guess
+        and increment a correct/incorrect counter.
+        Upon completion of the guessing, it should tell
+        the user how many answers were correct/incorrect.
+        */
         class GuessGame {
             /* This class should contain all the methods necessary to
             initialize and play a game - including reading from the array,
             taking guesses, evaluating answers, incrementing counts,
             and output results to the user.
             */
-            int correct;
-            int wrong;
+            private int correct;
+            private int wrong;
+
 
             private GuessGame() {
                 correct = 0;
                 wrong = 0;
+                System.out.println("Let's try to guess all 50 U.S. capitals!");
             }
 
-            private int[] getResults() {
-                return new int[]{correct, wrong};
+            private void printResults() {
+                System.out.println(String.format("You answered %d correctly " +
+                        "and %d incorrectly.", correct, wrong));
+            }
+
+            private void play() {
+                /* This method should iterate over every
+                item in the answers list and perform
+                the actual input evaluation from the user.
+                */
+                Scanner scanner = new Scanner(System.in);
+                String res;
+                for (String[] capitalState : answers) {
+                    System.out.println(String.format("What is the capital of " +
+                            "%s?%nGuess: ", capitalState[1]));
+                    res = scanner.nextLine();
+                    if (Objects.equals(res.toLowerCase(),
+                            capitalState[0].toLowerCase())) {
+                        System.out.println("correct");
+                        correct++;
+                    } else {
+                        System.out.println("wrong");
+                        wrong++;
+                    }
+                }
             }
         }
         GuessGame game = new GuessGame();
-        System.out.println(Arrays.toString(game.getResults()));
+        game.play();
+        game.printResults();
     }
 
 
@@ -99,8 +122,6 @@ public class Scratch {
                 {"Madison", "Wisconsin"},
                 {"Cheyenne", "Wyoming"},
         };
-
-        printState(capitalsStates[0]);
 
         // Print contents of array (line by line)
 
