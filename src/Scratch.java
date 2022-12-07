@@ -53,10 +53,8 @@ public class Scratch {
                     res = scanner.nextLine();
                     if (Objects.equals(res.toLowerCase(),
                             capitalState[0].toLowerCase())) {
-                        System.out.println("correct");
                         correct++;
                     } else {
-                        System.out.println("wrong");
                         wrong++;
                     }
                 }
