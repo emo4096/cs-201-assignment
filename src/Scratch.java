@@ -1,26 +1,9 @@
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Scratch {
 
-    private static String[][] twoDimensionBubbleSort(String[][] strArray) {
-        /* This method should take a 2D string array as an argument
-        and return the same array sorted using the bubble sort algorithm.
-        */
-        String[][] res;
-        for (int i = 0; i < strArray.length - 1; i++) {
-            // TODO: Implement bubblesort
-            if (Arrays.toString(strArray[i])
-                    .compareToIgnoreCase(Arrays.toString(strArray[i + 1])) > 1) {
-                System.out.println("Out of order");
-            } else if () {
 
-            }
-
-        }
-        return strArray;
-    }
 
     private static void playGuessGame(String[][] answers) {
         /* When called, this method should begin prompting
@@ -136,10 +119,10 @@ public class Scratch {
         }
 
         // Bubble sort
-        String[][] capitalsStatesSorted =
-                twoDimensionBubbleSort(capitalsStates);
+        CapitalStateArray csa = new CapitalStateArray(capitalsStates);
+        csa.bubbleSort();
         // Begin guesses from user and output results at the end
-        playGuessGame(capitalsStatesSorted);
+        //playGuessGame(capitalsStatesSorted);
 
         // Convert 2D array to hashmap
 
@@ -150,5 +133,33 @@ public class Scratch {
         // Begin user state/capital response
 
 
+    }
+}
+
+class CapitalStateArray {
+
+    String[][] strArray;
+
+    public CapitalStateArray(String[][] strArray) {
+        this.strArray = strArray;
+    }
+
+
+    public void bubbleSort() {
+        CapitalStateArray sorted;
+        for (int i = 0; i < strArray.length - 1; i++) {
+            strCompare(strArray[i], strArray[i + 1]);
+        }
+    }
+
+    private static void strCompare(String[] first, String[] second) {
+        int res = Arrays.toString(first).compareToIgnoreCase
+                (Arrays.toString(second));
+
+        if (res > 0) {
+            System.out.println("Out of order");
+        } else {
+            System.out.println("In order");
+        }
     }
 }
