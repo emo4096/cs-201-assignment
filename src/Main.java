@@ -1,29 +1,50 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * @author Ethan Johnson
+ * For Computer Science 201: Data Structures and Algorithms
+ */
 class CapitalStateArray {
-
+    /**
+     * This Helper class is meant to contain the methods for interacting with
+     * the capitalsStates string array.
+     */
     String[][] strArray;
 
+    /**
+     * @param strArray The two-dimensional string array containing the states
+     *                 and their capitals.
+     */
     public CapitalStateArray(String[][] strArray) {
         this.strArray = strArray;
     }
 
+    /**
+     * This method sorts the strArray of its containing class alphabetically
+     * based on the first element of each sub-array using the bubbleSort
+     * algorithm.
+     */
     public void bubbleSort() {
         CapitalStateArray sorted;
         for (int i = 0; i < strArray.length - 1; i++) {
-            if (strCompare(strArray[i], strArray[i + 1])) {
-                System.out.println("true");
-            } else {
-                System.out.println("false");
+            if (needsSorted(strArray[i], strArray[i + 1])) {
+                System.out.println("needs sorted");
             }
         }
     }
 
-    private static boolean strCompare(String[] first, String[] second) {
+    /**
+     * @param first  The first element to be compared.
+     * @param second The second element to be compared.
+     * @return Returns true if the first element is alphabetically after the
+     * second element. Returns false if the first element is equal to or
+     * alphabetically before the second element.
+     */
+    private static boolean needsSorted(String[] first, String[] second) {
         int res = Arrays.toString(first).compareToIgnoreCase
                 (Arrays.toString(second));
-        return res <= 0;
+        return res > 0;
     }
 }
 
