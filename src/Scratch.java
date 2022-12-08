@@ -3,61 +3,6 @@ import java.util.Scanner;
 
 public class Scratch {
 
-
-
-    private static void playGuessGame(String[][] answers) {
-        /* When called, this method should begin prompting
-        the user to guess the capitals of each state.
-        As the user guesses, it should evaluate each guess
-        and increment a correct/incorrect counter.
-        Upon completion of the guessing, it should tell
-        the user how many answers were correct/incorrect.
-        */
-        class GuessGame {
-            /* This class should contain all the methods necessary to
-            initialize and play a game - including reading from the array,
-            taking guesses, evaluating answers, incrementing counts,
-            and output results to the user.
-            */
-            private int correct;
-            private int wrong;
-
-            private GuessGame() {
-                correct = 0;
-                wrong = 0;
-                System.out.println("Let's try to guess all 50 U.S. capitals!");
-            }
-
-            private void printResults() {
-                System.out.println(String.format("You answered %d correctly " +
-                        "and %d incorrectly.", correct, wrong));
-            }
-
-            private void play() {
-                /* This method should iterate over every
-                item in the answers list and perform
-                the actual input evaluation from the user.
-                */
-                Scanner scanner = new Scanner(System.in);
-                String res;
-                for (String[] capitalState : answers) {
-                    System.out.println(String.format("What is the capital of " +
-                            "%s?%nGuess: ", capitalState[1]));
-                    res = scanner.nextLine();
-                    if (res.equalsIgnoreCase(capitalState[0])) {
-                        correct++;
-                    } else {
-                        wrong++;
-                    }
-                }
-            }
-        }
-        GuessGame game = new GuessGame();
-        game.play();
-        game.printResults();
-    }
-
-
     public static void main(String[] args) {
 
         final String[][] capitalsStates = {
@@ -122,7 +67,9 @@ public class Scratch {
         CapitalStateArray csa = new CapitalStateArray(capitalsStates);
         csa.bubbleSort();
         // Begin guesses from user and output results at the end
-        //playGuessGame(capitalsStatesSorted);
+        GuessGame gg = new GuessGame(capitalsStates);
+        gg.play();
+        //gg.printResults();
 
         // Convert 2D array to hashmap
 
@@ -153,7 +100,7 @@ class CapitalStateArray {
     }
 
     private static void strCompare(String[] first, String[] second) {
-        int res = Arrays.toString(first).compareToIgnoreCase
+         int res = Arrays.toString(first).compareToIgnoreCase
                 (Arrays.toString(second));
 
         if (res > 0) {
@@ -162,4 +109,50 @@ class CapitalStateArray {
             System.out.println("In order");
         }
     }
+}
+
+class GuessGame {
+    /* This class should contain all the methods necessary to
+    initialize and play a game - including reading from the array,
+    taking guesses, evaluating answers, incrementing counts,
+    and output results to the user.
+    */
+    private final String[][] answers;
+    private int correct;
+    private int wrong;
+
+    public GuessGame(String[][] answers) {
+        this.answers = answers;
+
+        correct = 0;
+        wrong = 0;
+        System.out.println("Let's try to guess all 50 U.S. capitals!");
+    }
+
+
+    public void play() {
+                /* This method should iterate over every
+                item in the answers list and perform
+                the actual input evaluation from the user.
+                */
+        Scanner scanner = new Scanner(System.in);
+        String res;
+        for (String[] capitalState : answers) {
+            System.out.printf("What is the capital of " +
+                    "%s?%nGuess: %n", capitalState[1]);
+            res = scanner.nextLine();
+            if (res.equalsIgnoreCase(capitalState[0])) {
+                correct++;
+            } else {
+                wrong++;
+            }
+        }
+        this.printResults();
+    }
+
+    private void printResults() {
+        System.out.printf("You answered %d correctly " +
+                "and %d incorrectly.%n", correct, wrong);
+    }
+
 }

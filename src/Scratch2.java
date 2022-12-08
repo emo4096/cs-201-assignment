@@ -4,12 +4,14 @@ public class Scratch2 {
     public static void main(String[] args) {
         System.out.println("abc".compareToIgnoreCase("abc"));
 
-        String[][] strArray = {{"abc", "test"},
+        String[][] strArray = {
+                {"abc", "test"},
                 {"ab", "test"},
                 {"ab", "test"},
                 {"abd", "test"},
                 {"ddd", "test"},
-                {"c", "test"}};
+                {"c", "test"}
+        };
 
         CapitalStateArrayTest csa = new CapitalStateArrayTest(strArray);
         csa.bubbleSort();
