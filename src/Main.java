@@ -20,19 +20,34 @@ class CapitalStateArray {
         this.strArray = strArray;
     }
 
+    public void printList() {
+        for (String[] capitalState : this.strArray) {
+            System.out.println(Arrays.toString(capitalState));
+        }
+    }
+
     /**
      * This method sorts the strArray of its containing class alphabetically
      * based on the first element of each sub-array using the bubbleSort
      * algorithm.
      */
     public void bubbleSort() {
-        CapitalStateArray sorted;
-        for (int i = 0; i < strArray.length - 1; i++) {
-            if (needsSorted(strArray[i], strArray[i + 1])) {
-                System.out.println("needs sorted");
+        boolean sorted = false;
+
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < strArray.length - 1; i++) {
+                if (needsSorted(strArray[i], strArray[i + 1])) {
+                    sorted = false;
+                    String[] temp = strArray[i];
+                    strArray[i] = strArray[i + 1];
+                    strArray[i + 1] = temp;
+                }
             }
         }
+
     }
+
 
     /**
      * @param first  The first element to be compared.
@@ -154,16 +169,14 @@ public class Main {
         CapitalStateArray csa = new CapitalStateArray(capitalsStates);
 
         // Print contents of array (line by line)
-        for (String[] capitalState : csa.strArray) {
-            System.out.println(Arrays.toString(capitalState));
-        }
+        csa.printList();
 
         // Bubble sort
         csa.bubbleSort();
-
+        csa.printList();
         // Begin guesses from user and output results at the end
-        GuessGame gg = new GuessGame(capitalsStates);
-        gg.play();
+        GuessGame game = new GuessGame(capitalsStates);
+        game.play();
 
         // Convert 2D array to hashmap
 
