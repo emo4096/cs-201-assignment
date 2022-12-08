@@ -69,7 +69,6 @@ public class Scratch {
         // Begin guesses from user and output results at the end
         GuessGame gg = new GuessGame(capitalsStates);
         gg.play();
-        //gg.printResults();
 
         // Convert 2D array to hashmap
 
@@ -95,19 +94,18 @@ class CapitalStateArray {
     public void bubbleSort() {
         CapitalStateArray sorted;
         for (int i = 0; i < strArray.length - 1; i++) {
-            strCompare(strArray[i], strArray[i + 1]);
+            if (strCompare(strArray[i], strArray[i + 1])) {
+                System.out.println("true");
+            } else {
+                System.out.println("false");
+            }
         }
     }
 
-    private static void strCompare(String[] first, String[] second) {
-         int res = Arrays.toString(first).compareToIgnoreCase
+    private static boolean strCompare(String[] first, String[] second) {
+        int res = Arrays.toString(first).compareToIgnoreCase
                 (Arrays.toString(second));
-
-        if (res > 0) {
-            System.out.println("Out of order");
-        } else {
-            System.out.println("In order");
-        }
+        return res <= 0;
     }
 }
 
