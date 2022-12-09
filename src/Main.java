@@ -3,8 +3,7 @@
  * For Computer Science 201: Data Structures and Algorithms
  */
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 
 /**
@@ -86,6 +85,14 @@ class CapitalStateArray {
                 (Arrays.toString(second));
         return res > 0;
     }
+
+    public Map<String, String> csaToHashMap() {
+        HashMap<String, String> result = new HashMap<>();
+        for (String[] capitalState : this.strArray) {
+            result.put(capitalState[0], capitalState[1]);
+        }
+        return result;
+    }
 }
 
 /**
@@ -135,11 +142,23 @@ class GuessGame {
     }
 }
 
+/**
+ * The main class of the program.
+ */
 public class Main {
 
+
+    /**
+     * The main method. Runs the program.
+     *
+     * @param args none
+     */
     public static void main(String[] args) {
 
-        // String array containing all capitals and states
+        /* String array containing all capitals and state. Normally I wouldn't
+         hardcode it and instead read it in from a text file. For the sake of
+         project simplicity this allows me to keep everything in one file.
+         */
         final String[][] capitalsStates = {
                 {"Montgomery", "Alabama"},
                 {"Juneau", "Alaska"},
@@ -194,21 +213,25 @@ public class Main {
         };
 
         // Construct our CapitalStateArray, passing in the raw string array
-        CapitalStateArray csa = new CapitalStateArray(capitalsStates);
+        CapitalStateArray capitalStateArray =
+                new CapitalStateArray(capitalsStates);
         // Print contents of array (line by line)
-        csa.printList();
+        capitalStateArray.printList();
         // Bubble sort and reprint
-        csa.bubbleSort();
-        csa.printList();
-        // Construct our game, passing in the csa, then play
-        GuessGame game = new GuessGame(csa);
+        capitalStateArray.bubbleSort();
+        capitalStateArray.printList();
+        // Construct our game, passing in the capitalStateArray, then play
+        GuessGame game = new GuessGame(capitalStateArray);
         game.play();
-        // Convert 2D array to hashmap
-
+        // Convert 2D array to map
+        Map<String, String> capitalStateHashMap =
+                capitalStateArray.csaToHashMap();
         // Display hashmap
-
+        System.out.println(capitalStateHashMap);
         // Sort map using with TreeMap class
-
+        TreeMap<String, String> capitalStateTreeMap =
+                new TreeMap<>(capitalStateHashMap);
+        System.out.println(capitalStateTreeMap);
         // Begin user state/capital response
 
 
