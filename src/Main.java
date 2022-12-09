@@ -5,13 +5,11 @@
 
 import java.util.*;
 
-
 /**
  * This Helper class is meant to contain the methods for interacting with
  * the capitalsStates string array.
  */
 class CapitalStateArray {
-
     String[][] strArray;
 
     /**
@@ -290,6 +288,7 @@ public class Main {
                 "that I think we should play again!%n(Press enter to " +
                 "continue.)%n");
         scanner.nextLine();
+
         System.out.printf("Just kidding. I won't make you do all of that " +
                 "again.%nAssuming you didn't just hold the enter key down " +
                 "to skip them all.%nLets go ahead and convert our " +
@@ -301,6 +300,7 @@ public class Main {
                 capitalStateArray.csaToHashMap();
         // Display hashmap
         System.out.println(capitalStateHashMap);
+
         System.out.printf("Hmm, at least we can look up map elements in " +
                 "constant time now.%nBut it sure would be nice to have a map " +
                 "sorted by key as well.%nLet's call a TreeMap constructor " +
@@ -321,6 +321,7 @@ public class Main {
         // Begin user state/capital response
         CapitalResponse capitalResponse = new CapitalResponse(capitalStateTreeMap);
         capitalResponse.askCapital();
+
         System.out.printf("Wasn't that exciting?%nI'm sure you'll use this " +
                 "program every day to practice remembering all of the " +
                 "capitals.%nDon't worry, you won't be billed for using it" +
