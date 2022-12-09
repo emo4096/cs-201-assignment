@@ -319,7 +319,8 @@ public class Main {
                 "corresponding capital.%n(Press enter to continue.)%n");
         scanner.nextLine();
         // Begin user state/capital response
-        CapitalResponse capitalResponse = new CapitalResponse(capitalStateTreeMap);
+        CapitalResponse capitalResponse =
+                new CapitalResponse(capitalStateTreeMap);
         capitalResponse.askCapital();
 
         System.out.printf("Wasn't that exciting?%nI'm sure you'll use this " +
