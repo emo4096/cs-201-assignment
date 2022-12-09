@@ -89,7 +89,10 @@ class CapitalStateArray {
     public Map<String, String> csaToHashMap() {
         HashMap<String, String> result = new HashMap<>();
         for (String[] capitalState : this.strArray) {
-            result.put(capitalState[0], capitalState[1]);
+            /* Setting the state as the key and capital as the value since
+            that is how we will want to search the map by later on.
+             */
+            result.put(capitalState[1], capitalState[0]);
         }
         return result;
     }
@@ -139,6 +142,42 @@ class GuessGame {
         }
         System.out.printf("You answered %d correctly " +
                 "and %d incorrectly.%n", correct, wrong);
+    }
+}
+
+class CapitalResponse {
+    Map<String, String> answers;
+
+    /**
+     * Class constructor specifying the answer Map<> to be used for responses.
+     *
+     * @param answers The map containing the answers.
+     */
+    public CapitalResponse(Map<String, String> answers) {
+        this.answers = answers;
+    }
+
+    /**
+     * This method loops until the user inputs "quit". It asks the user for a
+     * state and checks if that state exists in the map. It outputs the
+     * results to the user, whether it was an invalid state or the name of
+     * the capital if the state was found in the map.
+     */
+    public void askCapital() {
+        while (true) {
+            System.out.println("What state would you like to know the capital" +
+                    " of? (Type 'quit' to quit.)");
+            Scanner scanner = new Scanner(System.in);
+            String res = scanner.nextLine();
+            if (Objects.equals(res, "quit")) {
+                break;
+            } else if (!this.answers.containsKey(res)) {
+                System.out.println("That is not a state!");
+            } else {
+                System.out.printf("The capital of %s is %s.%n", res,
+                        this.answers.get(res));
+            }
+        }
     }
 }
 
@@ -211,29 +250,82 @@ public class Main {
                 {"Madison", "Wisconsin"},
                 {"Cheyenne", "Wyoming"},
         };
+        // Construct scanner to step through program by each section
+        Scanner scanner = new Scanner(System.in);
 
+        // Introduce program
+        System.out.printf("Welcome to my Java program for Computer Science " +
+                "201: Data Structures and Algorithms.%nTo make the program " +
+                "easier to evaluate, it interrupts itself after performing " +
+                "each assigned task and waits for user input to continue " +
+                "with the next one.%n(Press enter to continue.)%n");
+        scanner.nextLine();
+
+        System.out.printf("First we will construct and display the contents " +
+                "of our CapitalStateArray.%n(Press enter to continue.)%n");
+        scanner.nextLine();
         // Construct our CapitalStateArray, passing in the raw string array
         CapitalStateArray capitalStateArray =
                 new CapitalStateArray(capitalsStates);
         // Print contents of array (line by line)
         capitalStateArray.printList();
+
+        System.out.printf("Now that we have our CapitalStateArray " +
+                "constructed, we can call our bubbleSort() method on it.%nWe " +
+                "will reprint again to show the contents are sorted.%n(Press " +
+                "enter to continue.)%n");
+        scanner.nextLine();
         // Bubble sort and reprint
         capitalStateArray.bubbleSort();
         capitalStateArray.printList();
+
+        System.out.printf("Now we will begin the capital guessing activity.%n" +
+                "(Press enter to continue.)%n");
+        scanner.nextLine();
         // Construct our game, passing in the capitalStateArray, then play
         GuessGame game = new GuessGame(capitalStateArray);
         game.play();
+
+        System.out.printf("Wasn't that fun?%nIn fact, that was so much fun " +
+                "that I think we should play again!%n(Press enter to " +
+                "continue.)%n");
+        scanner.nextLine();
+        System.out.printf("Just kidding. I won't make you do all of that " +
+                "again.%nAssuming you didn't just hold the enter key down " +
+                "to skip them all.%nLets go ahead and convert our " +
+                "CapitalStateArray into a hashmap using our csaToHashMap() " +
+                "method.%n(Press enter to continue.)%n");
+        scanner.nextLine();
         // Convert 2D array to map
         Map<String, String> capitalStateHashMap =
                 capitalStateArray.csaToHashMap();
         // Display hashmap
         System.out.println(capitalStateHashMap);
-        // Sort map using with TreeMap class
+        System.out.printf("Hmm, at least we can look up map elements in " +
+                "constant time now.%nBut it sure would be nice to have a map " +
+                "sorted by key as well.%nLet's call a TreeMap constructor " +
+                "and pass our map as an argument.%nWe'll print it and see " +
+                "it's sorted by key this time.%n(Press enter to continue.)%n");
+        scanner.nextLine();
+        // Sort map using TreeMap class
         TreeMap<String, String> capitalStateTreeMap =
                 new TreeMap<>(capitalStateHashMap);
         System.out.println(capitalStateTreeMap);
+
+        System.out.printf("Now that we have a sorted TreeMap, we can do all " +
+                "kinds of efficient lookups!%nLet's exercise this by " +
+                "educating ourselves on the United States capitals.%nGive the" +
+                " program a state and it will search the map to find the " +
+                "corresponding capital.%n(Press enter to continue.)%n");
+        scanner.nextLine();
         // Begin user state/capital response
-
-
+        CapitalResponse capitalResponse = new CapitalResponse(capitalStateTreeMap);
+        capitalResponse.askCapital();
+        System.out.printf("Wasn't that exciting?%nI'm sure you'll use this " +
+                "program every day to practice remembering all of the " +
+                "capitals.%nDon't worry, you won't be billed for using it" +
+                ".%nAnyway, thanks for compiling and running.%nHave a nice " +
+                "day :)%n(Press enter to quit.)");
+        scanner.nextLine();
     }
 }
