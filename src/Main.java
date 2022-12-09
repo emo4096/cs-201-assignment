@@ -1,25 +1,36 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 /**
  * @author Ethan Johnson
  * For Computer Science 201: Data Structures and Algorithms
  */
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+/**
+ * This Helper class is meant to contain the methods for interacting with
+ * the capitalsStates string array.
+ */
 class CapitalStateArray {
-    /**
-     * This Helper class is meant to contain the methods for interacting with
-     * the capitalsStates string array.
-     */
+
     String[][] strArray;
 
     /**
+     * Class constructor specifying the string array to be used.
+     *
      * @param strArray The two-dimensional string array containing the states
      *                 and their capitals.
      */
     public CapitalStateArray(String[][] strArray) {
-        this.strArray = strArray;
+        /* Must use clone() or arrayCopy() here as Java treats assignments to
+         objects as references and not the object itself. */
+        this.strArray = strArray.clone();
     }
 
+    /**
+     * This method provides a shorthand call to print the capitals and states
+     * line by line.
+     */
     public void printList() {
         for (String[] capitalState : this.strArray) {
             System.out.println(Arrays.toString(capitalState));
@@ -34,6 +45,17 @@ class CapitalStateArray {
     public void bubbleSort() {
         boolean sorted = false;
 
+        /* This algorithm begins by checking if the array is sorted, and
+        continues to run as long is it is unsorted. Every iteration of the
+        while loop, variable sorted is set to true. An inner for-loop is then
+        run to iterate over the array elements. For each element, it will
+        compare it to the element after itself using the needsSorted() method.
+        If needsSorted() returns true, sorted will be set to false, then the
+        elements will be swapped via a simple temporary variable
+        implementation. If the inner for-loop iterates without ever following
+        the conditional path, sorted will never be set to false and thus the
+        outer while-loop will break.
+         */
         while (!sorted) {
             sorted = true;
             for (int i = 0; i < strArray.length - 1; i++) {
@@ -50,11 +72,14 @@ class CapitalStateArray {
 
 
     /**
+     * Returns the sorting state of two elements in a string array. It
+     * returns true if the second string is alphabetically prior to the first
+     * string. It returns false if the strings are the same or if the second
+     * string is alphabetically after.
+     *
      * @param first  The first element to be compared.
      * @param second The second element to be compared.
-     * @return Returns true if the first element is alphabetically after the
-     * second element. Returns false if the first element is equal to or
-     * alphabetically before the second element.
+     * @return The sorted state of the two provided strings.
      */
     private static boolean needsSorted(String[] first, String[] second) {
         int res = Arrays.toString(first).compareToIgnoreCase
@@ -63,30 +88,36 @@ class CapitalStateArray {
     }
 }
 
+/**
+ * This class contains the methods necessary to play the guessing game and
+ * output the users results.
+ */
 class GuessGame {
-    /* This class should contain all the methods necessary to
-    initialize and play a game - including reading from the array,
-    taking guesses, evaluating answers, incrementing counts,
-    and output results to the user.
-    */
     private final String[][] answers;
     private int correct;
     private int wrong;
 
-    public GuessGame(String[][] answers) {
-        this.answers = answers;
+    /**
+     * Class constructor specifying the CapitalStateArray to be used as the
+     * answer list for the game.
+     *
+     * @param answers The two-dimensional array to be used as the answer list.
+     */
+    public GuessGame(CapitalStateArray answers) {
+        this.answers = answers.strArray;
 
         correct = 0;
         wrong = 0;
         System.out.println("Let's try to guess all 50 U.S. capitals!");
     }
 
-
+    /**
+     * This method plays the game by initializing a scanner, iterating over
+     * the answer array, and evaluating the user's input each iteration. At
+     * the end of the game, the printResults() method is called to tell the
+     * user how many responses were correct/incorrect.
+     */
     public void play() {
-                /* This method should iterate over every
-                item in the answers list and perform
-                the actual input evaluation from the user.
-                */
         Scanner scanner = new Scanner(System.in);
         String res;
         for (String[] capitalState : answers) {
@@ -99,20 +130,16 @@ class GuessGame {
                 wrong++;
             }
         }
-        this.printResults();
-    }
-
-    private void printResults() {
         System.out.printf("You answered %d correctly " +
                 "and %d incorrectly.%n", correct, wrong);
     }
-
 }
 
 public class Main {
 
     public static void main(String[] args) {
 
+        // String array containing all capitals and states
         final String[][] capitalsStates = {
                 {"Montgomery", "Alabama"},
                 {"Juneau", "Alaska"},
@@ -166,18 +193,16 @@ public class Main {
                 {"Cheyenne", "Wyoming"},
         };
 
+        // Construct our CapitalStateArray, passing in the raw string array
         CapitalStateArray csa = new CapitalStateArray(capitalsStates);
-
         // Print contents of array (line by line)
         csa.printList();
-
-        // Bubble sort
+        // Bubble sort and reprint
         csa.bubbleSort();
         csa.printList();
-        // Begin guesses from user and output results at the end
-        GuessGame game = new GuessGame(capitalsStates);
+        // Construct our game, passing in the csa, then play
+        GuessGame game = new GuessGame(csa);
         game.play();
-
         // Convert 2D array to hashmap
 
         // Display hashmap
