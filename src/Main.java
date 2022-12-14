@@ -140,7 +140,6 @@ class GuessGame {
         }
         System.out.printf("You answered %d correctly " +
                 "and %d incorrectly.%n", correct, wrong);
-        scanner.close();
     }
 }
 
